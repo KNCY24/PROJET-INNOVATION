@@ -1,0 +1,22 @@
+<div class="toolbar" role="banner">
+    
+    <img (click)="home()" id="logo-img" alt="Logo" src="assets/images/logo.jpg"/>
+
+    <div class="spacer"></div>
+    <div class="add" (click)="importData()">
+        <img id="plus-img" alt="plus" src="assets/images/plus.png"/>  
+        <span>Importer une intervention</span>
+    </div>
+
+    <div id="dark-background" *ngIf="isPopup==true">
+        <div id="appointmentPopup">
+        <div class=popupHeader>
+            NOUVEAU RAPPEL
+            <i (click)="closePopup()" class="fas fa-times-circle"></i>
+        </div>
+        <div class=popupBody>
+            test
+        </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+$black: #08080c;
+$red: #e2230d;
+$orange: #ebb83d;
+$yellow: #ffea8b;
+$gray: #bbbbbd;
+$light: #dadada;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+:host ::ng-deep .content {
+  display: flex;
+  margin: 200px auto 25px;
+  padding: 0 16px 50px;
+  flex-direction: column;
+  align-items: center;
+  color: $black;
+  font-family: "Roboto", sans-serif;
+  #title {
+    width: 70%;
+    img {
+      display: inline-block;
+      width: 25px;
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-2px);
+      }
+    }
+    h1 {
+      display: inline-block;
+      margin: 0;
+      position: relative;
+      top: -4px;
+      right: -30px;
+      font-size: 24px;
+    }
+  }
+  .menu {
+    margin-top: 2%;
+    width: 70%;
+    display: grid;
+    grid-template-areas:
+      "writer "
+      "detail";
+    grid-template-columns: 100%;
+    grid-gap: 5px;
+    div.card {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      &#writer {
+        grid-area: writer;
+        text-align: right;
+        font-size: 13px;
+      }
+      &#detail {
+        grid-area: detail;
+        align-items: center;
+        border: 2px solid $light;
+        border-radius: 10px;
+        padding: 2.5% 0px;
+        #datetime {
+          font-size: 18px;
+          font-weight: bold;
+          margin-bottom: 40px;
+        }
+        #params {
+          margin-bottom: 70px;
+          width: 80%;
+          display: grid;
+          grid-template-areas: "localisation classefeu nbmasque";
+          grid-gap: 5px;
+          div {
+            text-align: center;
+            &#localisation {
+              grid-area: localisation;
+            }
+            &#classefeu {
+              grid-area: classefeu;
+            }
+            &#nbmasque {
+              grid-area: nbmasque;
+            }
+          }
+        }
+        #subtitle {
+          font-weight: bold;
+          font-size: 16px;
+          margin-bottom: 40px;
+        }
+        #masque {
+          width: 70%;
+          text-align: center;
+          .detailmasque {
+            width: 155px;
+            display: inline-block;
+            text-align: left;
+            margin: 0 20px 40px;
+            .nommasque {
+              text-decoration: underline;
+              margin-bottom: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,156 @@
+$blue-night: #233b6e;
+$blue-light: #abbff8;
+$darkred: #dc0005;
+$green: #00ff00;
+$blue: #4169e1;
+
+$black: #08080c;
+$red: #e2230d;
+$orange: #ebb83d;
+$yellow: #ffea8b;
+$gray: #bbbbbd;
+$light: #dadada;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+@keyframes shake {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(-10deg);
+  }
+  to {
+    transform: rotate(10deg);
+  }
+}
+.spacer {
+  flex: 1;
+}
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  color: $black;
+  padding: 0 10px 0 0;
+  div {
+    &.add {
+      position: relative;
+      top: -15px;
+      right: 30px;
+      border-radius: 5px;
+      padding: 10px 30px 10px 33px;
+      text-align: center;
+      background-color: $orange;
+      color: white;
+      font-family: "Roboto", sans-serif;
+      span {
+        position: relative;
+        left: 3px;
+        top: -4px;
+      }
+      img {
+        width: 22px;
+        position: relative;
+        top: 2px;
+        right: 3px;
+      }
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+      }
+    }
+  }
+  #logo-img {
+    width: 150px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+#dark-background {
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  z-index: 2;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+
+  #appointmentPopup {
+    width: 60%;
+    margin: 9% auto;
+    border: 2px solid $blue-night;
+    background-color: white;
+
+    .popupHeader {
+      border: 2px solid $blue-night;
+      padding: 18px;
+      text-align: center;
+      color: white;
+      background: $blue-night;
+      font-weight: 500;
+      font-size: 20px;
+      .fas {
+        position: relative;
+        float: right;
+        font-size: 30px;
+        margin-top: -5px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .popupBody {
+      padding: 30px;
+      text-align: center;
+      input,
+      select {
+        display: inline-block;
+        margin: 20px 5px 5px 5px;
+        border: 1px solid $blue-light;
+        color: $blue-light;
+        font-weight: 600;
+        padding: 8px;
+        border-radius: 8px;
+        width: 200px;
+        &:focus {
+          outline: 0;
+        }
+        &::placeholder {
+          color: $blue-light;
+          font-weight: normal;
+        }
+        &:hover {
+          cursor: pointer;
+        }
+        &.intitule {
+          width: 400px;
+        }
+      }
+      button {
+        border: 1.5px solid $blue-night;
+        border-radius: 8px;
+        background-color: $blue-night;
+        color: white;
+        padding: 8px;
+        width: 110px;
+        margin-top: 20px;
+        font-size: 14px;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          cursor: pointer;
+          transform: translateY(-3px);
+          box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+        }
+      }
+    }
+  }
+}

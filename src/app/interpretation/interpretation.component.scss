@@ -1,0 +1,66 @@
+$black: #08080c;
+$red: #e2230d;
+$orange: #ebb83d;
+$yellow: #ffea8b;
+$gray: #bbbbbd;
+$light: #dadada;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+:host ::ng-deep .content {
+  display: flex;
+  margin: 200px auto 25px;
+  padding: 0 16px 50px;
+  flex-direction: column;
+  align-items: center;
+  color: $black;
+  font-family: "Roboto", sans-serif;
+  #title {
+    img {
+      display: inline-block;
+      width: 30px;
+      position: relative;
+      left: -30px;
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-2px);
+      }
+    }
+    h1 {
+      display: inline-block;
+      margin: 0;
+      position: relative;
+      top: -2.5px;
+    }
+  }
+  .menu {
+    margin-top: 2%;
+    width: 90%;
+    display: grid;
+    grid-template-areas:
+      "graph "
+      "detail";
+    grid-template-columns: 100%;
+    grid-gap: 25px;
+    div.card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      &#graph {
+        grid-area: graph;
+        height: 250px;
+      }
+      &#detail {
+        grid-area: detail;
+        border: 2px solid $light;
+        border-radius: 10px;
+        padding: 2.5% 2px;
+        span {
+          text-align: center;
+          padding: 0 30px;
+        }
+      }
+    }
+  }
+}

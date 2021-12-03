@@ -1,0 +1,21 @@
+<app-toolbar></app-toolbar>
+<div class="content">
+    
+    <div id=title>
+        <a routerLink="/home">
+            <img src="assets/images/back.png" alt=retour/>
+        </a>
+        <h1>INTERVENTIONS</h1>
+    </div>
+    <div class="menu">
+        <div class="card" *ngFor="let intervention of historique.interventions">
+            <div class=datetime>{{getDate(intervention.idintervention)}} <br> {{getHour(intervention.idintervention)}} </div>
+            <div class=lieu>à {{intervention.localisation}}</div>
+            <div class=writer>{{intervention.responsable.grade}} {{intervention.responsable.name}}</div>
+            <a routerLink="/intervention/{{intervention.idintervention}}">
+                <button>Voir</button>
+            </a>
+        </div>
+    </div>
+</div>
+

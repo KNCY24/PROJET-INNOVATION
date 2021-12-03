@@ -1,0 +1,25 @@
+$black: #08080c;
+$red: #e2230d;
+$orange: #ebb83d;
+$yellow: #ffea8b;
+$gray: #bbbbbd;
+$light: #dadada;
+
+#logo-img {
+  position: absolute;
+  z-index: 1;
+  width: 150px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.login {
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  position: fixed;
+}

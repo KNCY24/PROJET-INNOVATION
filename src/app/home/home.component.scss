@@ -1,0 +1,77 @@
+$black: #08080c;
+$red: #e2230d;
+$orange: #ebb83d;
+$yellow: #ffea8b;
+$gray: #bbbbbd;
+$light: #dadada;
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+
+:host ::ng-deep .content {
+  display: flex;
+  margin: 200px auto 25px;
+  padding: 0 16px 50px;
+  flex-direction: column;
+  align-items: center;
+  color: $black;
+  font-family: "Roboto", sans-serif;
+  .menu {
+    a {
+      text-decoration: none;
+      color: $black;
+    }
+    margin-top: 4.5%;
+    display: grid;
+    grid-template-areas: "profil parameter";
+    grid-template-columns: 50% 50%;
+    grid-gap: 50px;
+    div.card {
+      border: 2px solid $light;
+      width: 500px;
+      height: 300px;
+      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 10px 7% 10px;
+      h1 {
+        font-family: "Roboto", sans-serif;
+        font-size: 20px;
+      }
+      span {
+        &.detail {
+          margin-top: 8%;
+          font-size: 17px;
+        }
+        &#alert {
+          margin-top: 10px;
+          font-size: 12px;
+        }
+      }
+      button {
+        margin-top: 40px;
+        padding: 8px 18px;
+        font-size: 16px;
+        color: white;
+        font-weight: bold;
+        background-color: $orange;
+        border: 1px solid $orange;
+        &:hover {
+          cursor: pointer;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+        }
+      }
+      img {
+        margin-top: -80px;
+        width: 150px;
+      }
+      &#interv {
+        grid-area: profil;
+      }
+      &#interp {
+        grid-area: parameter;
+      }
+    }
+  }
+}
