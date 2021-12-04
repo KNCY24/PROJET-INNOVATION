@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Historique, Intervention, Porteur } from '../historique';
+import { Historique, Intervention, Porteur } from '../classfile';
 import { RestserviceService } from '../restservice.service';
 
 @Component({

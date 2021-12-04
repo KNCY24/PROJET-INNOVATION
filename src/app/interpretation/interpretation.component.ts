@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ChartType} from 'angular-google-charts';
-import { Historique, Porteur } from '../historique';
+import { Historique, Porteur } from '../classfile';
 import { RestserviceService } from '../restservice.service';
 import * as Highcharts from 'highcharts';
 

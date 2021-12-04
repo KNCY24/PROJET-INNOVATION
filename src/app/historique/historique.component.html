@@ -11,7 +11,7 @@
         <div class="card" *ngFor="let intervention of historique.interventions">
             <div class=datetime>{{getDate(intervention.idintervention)}} <br> {{getHour(intervention.idintervention)}} </div>
             <div class=lieu>à {{intervention.localisation}}</div>
-            <div class=writer>{{intervention.responsable.grade}} {{intervention.responsable.name}}</div>
+            <div class=writer>{{intervention.responsable}}</div>
             <a routerLink="/intervention/{{intervention.idintervention}}">
                 <button>Voir</button>
             </a>

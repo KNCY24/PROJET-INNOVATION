@@ -1,0 +1,184 @@
+<app-toolbar></app-toolbar>
+<div class="content">
+    
+    <div id=title>
+        <a routerLink="/home">
+            <img src="assets/images/back.png" alt=retour/>
+        </a>
+        <h1>UTILISATEURS</h1>
+    </div>
+    
+    <div id=writer>
+        <button (click)='popupA=true'>
+            <img id="plus-img" alt="plus" src="assets/images/plus.png"/> 
+            Ajouter un utilisateur
+        </button>
+    </div>
+    <table id=userboard>
+        <thead>
+            <tr>
+                <th>
+                    Statut
+                    <i (click)="popupI=true" class="far fa-question-circle"></i>
+                </th>
+                <th>Utilisateur</th>
+                <th>Date de naissance</th>
+                <th>E-mail</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of (users.users | orderBy:'name':false)">
+                <td>{{user.statut}}</td>
+                <td>{{user.grade}} {{user.name}} {{user.firstname}}</td>
+                <td>{{getDate(user.born)}}</td>
+                <td>{{user.mail}}</td>
+                <td>
+                    <i (click)="update(user)" class="fas fa-edit"></i>
+                    <i (click)="delete(user.iduser)" class="fas fa-trash-alt"></i>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="dark-background" *ngIf="popupI==true">
+    <div id="infoPopup">
+        <div class=popupHeader>
+            <i (click)="closePopup()" class="fas fa-times-circle"></i>
+            Fenêtre d'information
+        </div>
+        <div class=popupBody>
+            <div class="alert">
+                <span>Statut de l'utitilisateur </span><br> <br>
+                <div>
+                    1 : L'utilisateur a accès à l'ensemble des fonctionnalités de l'application <br>
+                    2 : L'utilisateur peut importer/consulter des interventions et accéder à l'interprétation<br>
+                    3 : L'utilisateur peut consulter des interventions et accéder à l'interprétation 
+                </div>
+            </div><br>
+            <button class=btn (click)="closePopup()">Fermer</button>
+        </div>
+    </div>
+</div>
+ 
+<div class="dark-background" *ngIf="popupD==true">
+    <div id="deletePopup">
+        <div class=popupHeader>
+            <i (click)="closePopup()" class="fas fa-times-circle"></i>
+            Effacer un utilisateur
+        </div>
+        <div class=popupBody>
+            <div class="alert">
+                <i class="fas fa-exclamation-circle"></i>
+                <span>Attention vous allez supprimer un utilisateur ! </span><br> <br>
+                Voulez-vous supprimer {{getName()}} né(e) le {{getDDN()|date:'dd/MM/yyyy'}} ?
+            </div><br>
+            <button class="deleteM btn" (click)=confirmationDelete()>Supprimer</button>
+            <button class=btn (click)="closePopup()">Annuler</button>
+        </div>
+    </div>
+</div>
+
+<div class="dark-background" *ngIf="popupU==true">
+    <div id="updatePopup">
+        <div class=popupHeader>
+        <i (click)="closePopup()" class="fas fa-times-circle"></i>
+            Utilisateur {{user.name}} {{user.firstname}}
+        </div>
+        <div class=popupBody>
+        <form id=form-container class=form-container (ngSubmit)=onUpdate(f) #f=ngForm>
+            <div class="champ" id="grade">Grade 
+                <select name=grade [(ngModel)]=grade>
+                    <option value="">Aucun</option>
+                    <option value="COL">COL</option>
+                    <option value="LCL">LCL</option>
+                    <option value="CDT">CDT</option>
+                    <option value="CNE">CNE</option>
+                    <option value="LTN">LTN</option>
+                    <option value="MAJ">MAJ</option>
+                    <option value="ADC">ADC</option>
+                    <option value="ADJ">ADJ</option>
+                    <option value="SCH">SCH</option>
+                    <option value=SGT>SGT</option>
+                    <option value="CCH">CCH</option>
+                    <option value="CPL">CPL</option>
+                    <option value="1CL">1CL</option>
+                    <option value="SAP">SAP</option>
+                </select> 
+            </div>
+            <div class="champ" id="statut">Statut 
+                <select name=statut [(ngModel)]=statut>
+                    <option value="1">Nv 1</option>
+                    <option value="2">Nv 2 </option>
+                    <option value="3">Nv 3</option>
+                </select> 
+            </div><br>
+
+            <div class="champ" id="name">Nom<input type=text name=name [(ngModel)]=name /></div>
+            <div class="champ" id="fname">Prénom<input type=text name=fname [(ngModel)]=fname /></div><br>
+            <div class="champ" id="born">Né(e) le<input type=date name=born [(ngModel)]=born /></div>
+            <div class="champ" id="mail">E-mail<input type=text name=mail [(ngModel)]=mail /></div><br>
+            
+            <div>
+                <button type=submit class="saveU btn" (click)="submit=true">Sauvegarder</button>
+                <button type=button class=btn (click)="closePopup()">Annuler</button>
+            </div>
+        </form>
+        <p *ngIf="alert==true" class=alert>{{msgAlert}}</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="dark-background" *ngIf="popupA==true">
+    <div id="addPopup">
+        <div class=popupHeader>
+        <i (click)="closePopup()" class="fas fa-times-circle"></i>
+            Ajouter utilisateur
+        </div>
+        <div class=popupBody>
+        <form id=form-container class=form-container (ngSubmit)=onSubmit(f) #f=ngForm>
+            <div class="champ" id="grade">Grade 
+                <select name=grade [(ngModel)]=grade>
+                    <option value="">Aucun</option>
+                    <option value="COL">COL</option>
+                    <option value="LCL">LCL</option>
+                    <option value="CDT">CDT</option>
+                    <option value="CNE">CNE</option>
+                    <option value="LTN">LTN</option>
+                    <option value="MAJ">MAJ</option>
+                    <option value="ADC">ADC</option>
+                    <option value="ADJ">ADJ</option>
+                    <option value="SCH">SCH</option>
+                    <option value=SGT>SGT</option>
+                    <option value="CCH">CCH</option>
+                    <option value="CPL">CPL</option>
+                    <option value="1CL">1CL</option>
+                    <option value="SAP">SAP</option>
+                </select> 
+            </div>
+            <div class="champ" id="statut">Statut 
+                <select name=statut [(ngModel)]=statut>
+                    <option value="1">Nv 1</option>
+                    <option value="2">Nv 2 </option>
+                    <option value="3">Nv 3</option>
+                </select> 
+            </div><br>
+
+            <div class="champ" id="name">Nom<input type=text name=name [(ngModel)]=name /></div>
+            <div class="champ" id="fname">Prénom<input type=text name=fname [(ngModel)]=fname /></div><br>
+            <div class="champ" id="born">Né(e) le<input type=date name=born [(ngModel)]=born /></div>
+            <div class="champ" id="mail">E-mail<input type=text name=mail [(ngModel)]=mail /></div><br>
+            
+            <div>
+                <button type=submit class="saveA btn" (click)="submit=true">Ajouter</button>
+                <button type=button class=btn (click)="closePopup()">Annuler</button>
+            </div>
+        </form>
+        <p *ngIf="alert==true" class=alert>{{msgAlert}}</p>
+        </div>
+    </div>
+</div>
+

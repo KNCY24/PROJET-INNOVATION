@@ -67,6 +67,26 @@ $light: #dadada;
         box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
       }
     }
+    &.users {
+      position: relative;
+      top: -15px;
+      right: 10px;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      background-color: $red;
+      img {
+        width: 40px;
+        position: relative;
+        left: 4.5px;
+        top: 2.5px;
+      }
+      &:hover {
+        cursor: pointer;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+      }
+    }
   }
   #logo-img {
     width: 150px;

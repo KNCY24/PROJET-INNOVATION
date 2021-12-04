@@ -7,8 +7,24 @@ export class Intervention {
     date:Date=new Date();
     localisation:string="";
     classefeu:string="";
-    responsable:Responsable=new Responsable();
+    responsable:User=new User();
     porteurs:Porteur[]=[];
+}
+
+export class Users {
+    users:User[] = [];
+}
+
+export class User {
+    iduser:number=0;
+    statut:string="";
+    grade:string="";
+    name:string="";
+    firstname:string="";
+    born:Date=new Date();
+    mail:string="";
+    password:string="";
+    nouveau:boolean=false;
 }
 
 export class Responsable {
@@ -17,8 +33,6 @@ export class Responsable {
     name:string="";
     firstname:string="";
     born:Date=new Date();
-    mail:String="";
-    password:String="";
 }
 
 export class Porteur {

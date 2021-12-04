@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Historique } from '../historique';
+import { Historique } from '../classfile';
 import { RestserviceService } from '../restservice.service';
 
 @Component({
