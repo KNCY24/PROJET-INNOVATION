@@ -5,16 +5,7 @@ $yellow: #ffea8b;
 $gray: #bbbbbd;
 $light: #dadada;
 
-#logo-img {
-  position: absolute;
-  z-index: 1;
-  width: 150px;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.login {
+.background {
   z-index: 2;
   margin: 0;
   padding: 0;
@@ -22,4 +13,71 @@ $light: #dadada;
   height: 100%;
   background: rgba(0, 0, 0, 0.6);
   position: fixed;
+
+  #signInPopup {
+    font-family: "Roboto", sans-serif;
+    width: 50%;
+    margin: 15% auto;
+    border: 2px solid $orange;
+    background-color: white;
+
+    .popupHeader {
+      align-items: center;
+      display: flex;
+      border-bottom: 2px solid $orange;
+      padding: 3px;
+      img:first-child {
+        width: 10%;
+      }
+    }
+    .popupBody {
+      padding: 30px;
+      text-align: center;
+      .alert {
+        height: 23px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        color: $red;
+        i {
+          font-size: 25px;
+          position: relative;
+          top: 3px;
+          right: 5px;
+        }
+      }
+      input {
+        display: inline-block;
+        margin: 20px 20px 5px 20px;
+        border: 1px solid $orange;
+        color: $orange;
+        font-weight: 400;
+        padding: 8px;
+        border-radius: 8px;
+        width: 200px;
+        &:focus {
+          outline: 0;
+        }
+        &::placeholder {
+          color: $orange;
+          font-weight: normal;
+        }
+      }
+      button {
+        border: 1.5px solid $orange;
+        border-radius: 8px;
+        background-color: $orange;
+        color: white;
+        padding: 8px;
+        width: 110px;
+        margin-top: 30px;
+        font-size: 14px;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+          cursor: pointer;
+          transform: translateY(-3px);
+          box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+        }
+      }
+    }
+  }
 }

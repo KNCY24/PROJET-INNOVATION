@@ -28,16 +28,29 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let user of (users.users | orderBy:'name':false)">
-                <td>{{user.statut}}</td>
-                <td>{{user.grade}} {{user.name}} {{user.firstname}}</td>
-                <td>{{getDate(user.born)}}</td>
-                <td>{{user.mail}}</td>
-                <td>
-                    <i (click)="update(user)" class="fas fa-edit"></i>
-                    <i (click)="delete(user.iduser)" class="fas fa-trash-alt"></i>
-                </td>
-            </tr>
+            <ng-container *ngFor="let user of users.users">
+                <tr *ngIf="user.mail==sessionmail">
+                    <td>{{user.statut}}</td>
+                    <td>{{user.grade}} {{user.name}} {{user.firstname}}</td>
+                    <td>{{getDate(user.born)}}</td>
+                    <td>{{user.mail}}</td>
+                    <td>
+                        <i (click)="update(user)" class="fas fa-edit"></i>
+                    </td>
+                </tr>
+            </ng-container>
+            <ng-container *ngFor="let user of (users.users | orderBy:'name':false)">
+                <tr *ngIf='user.mail!=sessionmail && user.iduser!=1'>
+                    <td>{{user.statut}}</td>
+                    <td>{{user.grade}} {{user.name}} {{user.firstname}}</td>
+                    <td>{{getDate(user.born)}}</td>
+                    <td>{{user.mail}}</td>
+                    <td>
+                        <i (click)="update(user)" class="fas fa-edit"></i>
+                        <i *ngIf="user.mail!=sessionmail" (click)="delete(user.iduser)" class="fas fa-trash-alt"></i>
+                    </td>
+                </tr>
+            </ng-container>
         </tbody>
     </table>
 </div>

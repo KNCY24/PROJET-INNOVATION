@@ -1,6 +1,17 @@
-<img id="logo-img" alt="Logo" src="assets/images/logo.jpg"/>
-<div class=login>
-    <div class=body>
-        
+<div class=background>
+    <div id="signInPopup">
+        <div class=popupHeader>
+            <img
+                alt="logo"
+                src="/assets/images/logo.jpg"
+            />
+        </div>
+        <div class=popupBody>
+            <div *ngIf="alert!=''" class="alert"><i class="fas fa-times-circle"></i>{{alert}}</div>
+            <input (keyup)="getIdentifiers($event,0)" id="signInUsername" type=text placeholder="Nom d'utilisateur"/>
+            <input (keyup)="getIdentifiers($event,1)" id="signInPassword" type=password placeholder="Mot de passe"/>
+            <br>
+            <button (click)="verifSignIn()">Se connecter</button>
+        </div>
     </div>
 </div>

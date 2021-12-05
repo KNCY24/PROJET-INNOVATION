@@ -3,25 +3,21 @@
     <img (click)="home()" id="logo-img" alt="Logo" src="assets/images/logo.jpg"/>
 
     <div class="spacer"></div>
-    <div class="add" (click)="importData()">
-        <img id="plus-img" alt="plus" src="assets/images/plus.png"/>  
-        <span>Importer une intervention</span>
-    </div>
-    <a routerLink="/users">
-        <div class="users">
-            <img id="users" alt="users" src="assets/images/user.png" />
+    <div class=rightside>
+        <div class=uppart>
+            <span>Connecté en tant que {{username}}</span>
+            <i (click)="logout()" class="fas fa-sign-out-alt"></i>
         </div>
-    </a>
-
-    <div id="dark-background" *ngIf="isPopup==true">
-        <div id="appointmentPopup">
-        <div class=popupHeader>
-            NOUVEAU RAPPEL
-            <i (click)="closePopup()" class="fas fa-times-circle"></i>
-        </div>
-        <div class=popupBody>
-            test
-        </div>
+        <div *ngIf="statut!='3'" class=downpart>
+            <div class="add" (click)="importData()">
+                <img id="plus-img" alt="plus" src="assets/images/plus.png"/>  
+                <span>Importer une intervention</span>
+            </div>
+            <a routerLink="/users">
+                <div *ngIf="statut=='1'" class="users">
+                    <img id="users" alt="users" src="assets/images/user.png" />
+                </div>
+            </a>
         </div>
     </div>
 </div>

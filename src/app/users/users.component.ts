@@ -21,10 +21,12 @@ export class UsersComponent implements OnInit {
   iduser:number=0;
   user:User=new User();
   newuser:User=new User();
+  mailinit:string="";
 
   submit:boolean=false
   alert:boolean=false
   msgAlert='Tous les champs doivent être complétés.'
+  sessionmail:any=""
   
   grade=""
   name=""
@@ -42,6 +44,9 @@ export class UsersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(sessionStorage.getItem('username')){
+      this.sessionmail=sessionStorage.getItem('username')
+    }
   }
   
   getDate(d:Date){
@@ -115,6 +120,7 @@ export class UsersComponent implements OnInit {
     this.name=user.name
     this.grade=user.grade
     this.fname=user.firstname
+    this.mailinit=user.mail
     this.mail=user.mail
     this.statut=user.statut
     var date=new Date(user.born)
@@ -167,7 +173,7 @@ export class UsersComponent implements OnInit {
       return false;
     }
     for(let u of this.users.users){
-      if(u.mail==this.mail){
+      if(u.mail==this.mail && this.mail!=this.mailinit){
         this.msgAlert="Cette adresse mail est déjà utilisée."
         return false
       }

@@ -39,11 +39,38 @@ $light: #dadada;
   background-color: white;
   color: $black;
   padding: 0 10px 0 0;
+
   div {
-    &.add {
+    &.uppart {
+      font-family: "Roboto", sans-serif;
       position: relative;
       top: -15px;
-      right: 30px;
+      text-align: right;
+      right: 15px;
+      span {
+        position: relative;
+        right: 10px;
+        font-size: 14px;
+      }
+      i {
+        position: relative;
+        top: 3px;
+        font-size: 20px;
+        &:hover {
+          cursor: pointer;
+          color: $orange;
+        }
+      }
+    }
+    &.downpart {
+      position: relative;
+      right: 15px;
+      top: -5px;
+    }
+    &.add {
+      display: inline-block;
+      position: relative;
+      left: -15px;
       border-radius: 5px;
       padding: 10px 30px 10px 33px;
       text-align: center;
@@ -68,9 +95,9 @@ $light: #dadada;
       }
     }
     &.users {
+      display: inline-block;
       position: relative;
-      top: -15px;
-      right: 10px;
+      top: 5px;
       border-radius: 50%;
       width: 50px;
       height: 50px;
