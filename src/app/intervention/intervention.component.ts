@@ -17,7 +17,13 @@ export class InterventionComponent implements OnInit {
     service.getHistorique().subscribe(
       data => {
         this.historique=data;
-        this.intervention=this.historique.interventions[this.route.snapshot.params['id']]
+        var i=0
+        for(let intervention of this.historique.interventions){
+          if(intervention.idintervention==this.route.snapshot.params['id']){
+            this.intervention=this.historique.interventions[i]
+          }
+          i=i+1
+        }
       }
     )
   }
@@ -34,29 +40,12 @@ export class InterventionComponent implements OnInit {
     }else{
       jour=""+date.getDate()
     }
-    if(date.getMonth()<10){
-      mois="0"+date.getMonth()
+    if(date.getMonth()<9){
+      mois="0"+(date.getMonth()+1)
     }else{
-      mois=""+date.getMonth()
+      mois=""+(date.getMonth()+1)
     }
     return jour+"/"+mois+"/"+date.getFullYear()
-  }
-
-  getHour(d:Date){
-    var date = new Date(d)
-    var heure=""
-    var minute=""
-    if(date.getMinutes()<10){
-      minute="0"+date.getMinutes()
-    }else{
-      minute=""+date.getMinutes()
-    }
-    if(date.getHours()<10){
-      heure="0"+date.getHours()
-    }else{
-      heure=""+date.getHours()
-    }
-    return heure+"h"+minute
   }
 
   countPorteur(i :Intervention){

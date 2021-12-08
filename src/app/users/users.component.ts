@@ -4,7 +4,7 @@ import { RestserviceService } from '../restservice.service';
 import { NgForm } from '@angular/forms';
 
 import { DatePipe } from '@angular/common';
-import { SMTPClient } from 'emailjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-users',
@@ -35,7 +35,7 @@ export class UsersComponent implements OnInit {
   statut="1"
   born=""
 
-  constructor(private service : RestserviceService,private datepipe:DatePipe) { 
+  constructor(private service : RestserviceService,private snackbar:MatSnackBar,private datepipe:DatePipe) { 
     service.getUsers().subscribe(
       data => {
         this.users=data;
@@ -106,10 +106,19 @@ export class UsersComponent implements OnInit {
   }
 
   confirmationDelete(){
-    this.service.deleteUser(this.iduser).subscribe(
+    (<HTMLDivElement>document.getElementById("loadWait")).style.display="block";
+      this.service.deleteUser(this.iduser).subscribe(
       data => {
+        (<HTMLDivElement>document.getElementById("loadWait")).style.display="none";
         this.users = data;
         this.closePopup();
+        this.snackbar.open("Utilisateur supprimé.","",{
+          duration:3000,
+          panelClass:["snackbar"]
+        })
+      },
+      error =>{
+        alert('Erreur, réactualisez la page!')
       }
     )
   }
@@ -184,6 +193,7 @@ export class UsersComponent implements OnInit {
   onUpdate(form:NgForm){
     if(this.verifForm()==true && this.submit==true){
       (<HTMLElement>document.getElementById("updatePopup")).classList.remove("alertActive");
+      (<HTMLDivElement>document.getElementById("loadWait")).style.display="block";
       this.alert=false
       this.user.name=this.name
       this.user.firstname=this.fname
@@ -196,6 +206,14 @@ export class UsersComponent implements OnInit {
           this.users = data;
           this.popupU=false;
           this.submit=false;
+          (<HTMLDivElement>document.getElementById("loadWait")).style.display="none";
+          this.snackbar.open("Utilisateur mis à jour.","",{
+            duration:3000,
+            panelClass:["snackbar"]
+          })
+        },
+        error =>{
+          alert('Erreur, réactualisez la page!')
         }
       )
           
@@ -208,6 +226,7 @@ export class UsersComponent implements OnInit {
 
   onSubmit(form:NgForm){
     if(this.verifForm()==true && this.submit==true){
+      (<HTMLDivElement>document.getElementById("loadWait")).style.display="block";
       (<HTMLElement>document.getElementById("addPopup")).classList.remove("alertActive");
       this.alert=false
       this.newuser.name=this.name
@@ -227,6 +246,11 @@ export class UsersComponent implements OnInit {
       this.newuser.password=newpassword+","+String(pwcrypt)
       this.service.addUser(this.newuser).subscribe(
         data => {
+          (<HTMLDivElement>document.getElementById("loadWait")).style.display="none";
+          this.snackbar.open("Utilisateur ajouté.","",{
+            duration:3000,
+            panelClass:["snackbar"]
+          })
           this.users = data;
           this.popupA=false;
           this.submit=false;
@@ -236,6 +260,9 @@ export class UsersComponent implements OnInit {
           this.mail=""
           this.statut="1"
           this.born=""
+        },
+        error =>{
+          alert('Erreur, réactualisez la page!')
         }
       )
           

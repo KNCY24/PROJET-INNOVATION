@@ -85,6 +85,9 @@ export class InterpretationComponent implements OnInit {
     }
     moyS=moyS/this.historique.interventions.length
     moyA=moyA/this.historique.interventions.length
+    if(listS.length<2 ||listA.length<2){
+      return "La quantité de données ne permet pas de faire une interprétation."
+    }
     if(moyA>moyS && moyA-moyS>5){
       return "En moyenne, le port de la barbe réduit l'étanchéité du masque de "+(moyA-moyS)+" %."
     }else if(moyA<moyS && moyS-moyA>5){

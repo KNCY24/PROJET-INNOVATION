@@ -7,7 +7,7 @@ export class Intervention {
     date:Date=new Date();
     localisation:string="";
     classefeu:string="";
-    responsable:User=new User();
+    responsable:string="";
     porteurs:Porteur[]=[];
 }
 
@@ -27,21 +27,10 @@ export class User {
     nouveau:boolean=false;
 }
 
-export class Responsable {
-    idresponsable:number=0;
-    grade:string="";
-    name:string="";
-    firstname:string="";
-    born:Date=new Date();
-}
-
 export class Porteur {
     idporteur:number=0;
     barbe:boolean=false;
     gaz:number=0;
-    masque:Masque=new Masque();
+    masque:number=0;
 }
 
-export class Masque {
-    idmasque:number=0;
-}

@@ -8,8 +8,11 @@
         <h1>INTERVENTIONS</h1>
     </div>
     <div class="menu">
-        <div class="card" *ngFor="let intervention of historique.interventions">
-            <div class=datetime>{{getDate(intervention.idintervention)}} <br> {{getHour(intervention.idintervention)}} </div>
+        <div *ngIf="historique.interventions.length==0">
+            Aucune intervention n'a été ajoutée pour le moment.
+        </div>
+        <div class="card" *ngFor="let intervention of (historique.interventions|orderBy:'date':true)">
+            <div class=datetime>{{getDate(intervention.idintervention)}}</div>
             <div class=lieu>à {{intervention.localisation}}</div>
             <div class=writer>{{intervention.responsable}}</div>
             <a routerLink="/intervention/{{intervention.idintervention}}">

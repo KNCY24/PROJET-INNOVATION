@@ -1,15 +1,11 @@
-$blue-night: #233b6e;
-$blue-light: #abbff8;
-$darkred: #dc0005;
-$green: #00ff00;
-$blue: #4169e1;
-
 $black: #08080c;
 $red: #e2230d;
 $orange: #ebb83d;
 $yellow: #ffea8b;
 $gray: #bbbbbd;
 $light: #dadada;
+$rosee: #ffe3e3e0;
+$green: #8ab61e;
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
@@ -26,6 +22,27 @@ $light: #dadada;
 }
 .spacer {
   flex: 1;
+}
+
+:host ::ng-deep #loadWait {
+  top: -30px;
+  z-index: 100;
+  width: 100%;
+  height: 400%;
+  position: fixed;
+  background: rgba(255, 255, 255, 0.5);
+  display: none;
+  mat-spinner {
+    margin-top: 12%;
+    width: 100% !important;
+    min-height: 500px !important;
+    svg {
+      margin: 15% auto auto 45%;
+      circle {
+        stroke: $orange;
+      }
+    }
+  }
 }
 
 .toolbar {
@@ -123,7 +140,7 @@ $light: #dadada;
   }
 }
 
-#dark-background {
+.dark-background {
   background: rgba(0, 0, 0, 0.7);
   top: 0;
   z-index: 2;
@@ -131,19 +148,23 @@ $light: #dadada;
   width: 100%;
   height: 100%;
 
-  #appointmentPopup {
+  #addPopup {
+    font-family: "Roboto", sans-serif;
     width: 60%;
-    margin: 9% auto;
-    border: 2px solid $blue-night;
+    margin: 8% auto;
+    border: 2px solid $orange;
     background-color: white;
-
+    &.alertActive {
+      border: 3px solid $red;
+      box-shadow: 0 4px 17px rgba(255, 255, 255, 0.712);
+    }
     .popupHeader {
-      border: 2px solid $blue-night;
+      border: 2px solid $orange;
       padding: 18px;
       text-align: center;
       color: white;
-      background: $blue-night;
-      font-weight: 500;
+      background: $orange;
+      font-weight: 600;
       font-size: 20px;
       .fas {
         position: relative;
@@ -152,50 +173,111 @@ $light: #dadada;
         margin-top: -5px;
         &:hover {
           cursor: pointer;
+          color: $rosee;
         }
       }
     }
     .popupBody {
       padding: 30px;
       text-align: center;
-      input,
-      select {
-        display: inline-block;
-        margin: 20px 5px 5px 5px;
-        border: 1px solid $blue-light;
-        color: $blue-light;
-        font-weight: 600;
-        padding: 8px;
-        border-radius: 8px;
-        width: 200px;
-        &:focus {
-          outline: 0;
+      .alert {
+        font-size: 16px;
+        .fa-exclamation-circle {
+          color: $red;
+          font-size: 30px;
+          position: relative;
+          top: 4px;
+          right: 6px;
         }
-        &::placeholder {
-          color: $blue-light;
-          font-weight: normal;
-        }
-        &:hover {
-          cursor: pointer;
-        }
-        &.intitule {
-          width: 400px;
+        span {
+          font-size: 20px;
+          font-weight: 600;
         }
       }
-      button {
-        border: 1.5px solid $blue-night;
+      button.btn {
+        border: 1.5px solid $yellow;
         border-radius: 8px;
-        background-color: $blue-night;
+        background-color: $orange;
         color: white;
         padding: 8px;
         width: 110px;
-        margin-top: 20px;
+        margin: 20px 8px 0;
         font-size: 14px;
         transition: all 0.2s ease-in-out;
+        &.save:hover {
+          background-color: $green;
+          border: 1.5px solid rgb(177, 255, 113);
+        }
         &:hover {
           cursor: pointer;
           transform: translateY(-3px);
           box-shadow: 0 4px 17px rgba(0, 0, 0, 0.35);
+        }
+      }
+
+      #form-container {
+        input:not(.inputfile) {
+          margin-left: 10px;
+          border: none;
+          border-bottom: 1px dotted $orange;
+          &:focus {
+            outline: 0;
+          }
+        }
+        select {
+          margin-left: 10px;
+          border: none;
+          &:hover {
+            color: $orange;
+            cursor: pointer;
+          }
+          &:focus {
+            outline: 0;
+          }
+        }
+        div {
+          display: inline-block;
+          margin-bottom: 20px;
+          &.champ {
+            text-align: left;
+          }
+          &#nbmasque {
+            input {
+              width: 50px;
+            }
+          }
+        }
+        fieldset {
+          border: 1px solid $orange;
+          height: 180px;
+          overflow-y: scroll;
+          span {
+            font-size: 12px;
+          }
+          .labelinput {
+            display: block;
+          }
+          .input-file-trigger {
+            display: inline-block;
+            width: 120px;
+            background: $orange;
+            color: #fff;
+            font-size: 13px;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px 5px;
+          }
+          .input-file {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 225px;
+            opacity: 0;
+            padding: 14px 0;
+            cursor: pointer;
+          }
         }
       }
     }

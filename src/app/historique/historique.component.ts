@@ -31,29 +31,12 @@ export class HistoriqueComponent implements OnInit {
     }else{
       jour=""+date.getDate()
     }
-    if(date.getMonth()<10){
-      mois="0"+date.getMonth()
+    if(date.getMonth()<9){
+      mois="0"+(date.getMonth()+1)
     }else{
-      mois=""+date.getMonth()
+      mois=""+(date.getMonth()+1)
     }
     return jour+"/"+mois+"/"+date.getFullYear()
-  }
-
-  getHour(id:number){
-    var date = new Date(this.historique.interventions[id-1].date)
-    var heure=""
-    var minute=""
-    if(date.getMinutes()<10){
-      minute="0"+date.getMinutes()
-    }else{
-      minute=""+date.getMinutes()
-    }
-    if(date.getHours()<10){
-      heure="0"+date.getHours()
-    }else{
-      heure=""+date.getHours()
-    }
-    return heure+"h"+minute
   }
 
 }

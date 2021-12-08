@@ -8,21 +8,21 @@
     </div>
     <div class="menu">
         <div class=card id=writer>
-            Complété par {{intervention.responsable}}
+            Ajouté par {{intervention.responsable}}
         </div>
         <div class="card" id="detail">
-            <div id=datetime>Intervention du {{getDate(intervention.date)}} à {{getHour(intervention.date)}}</div>
+            <div id=datetime>Intervention du {{getDate(intervention.date)}}</div>
             <div id=params>
                 <div id=localisation>Localisation : {{intervention.localisation}}</div>
                 <div id=classefeu>Classe de feu : {{intervention.classefeu}}</div>
-                <div id=nbmasque>Nombre de masque utilisés : {{countPorteur(intervention)}}</div>
+                <div id=nbmasque>Nombre de masques : {{countPorteur(intervention)}}</div>
             </div>
             <div id=subtitle>Gestion des masques</div>
             <div id=masque>
                 <div class=detailmasque *ngFor="let p of intervention.porteurs">
-                    <div class=nommasque>Masque {{p.masque.idmasque}}</div>
+                    <div class=nommasque>Masque {{p.masque}}</div>
                     <div class=barbe>Barbe : {{ifBarbe(p.barbe)}}</div>
-                    <div class=quantite>Gaz détectés : {{p.gaz}}%</div>
+                    <div class=quantite>Gaz détectés : {{p.gaz}}ppm</div>
                 </div>
             </div>
         </div>

@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import {FormsModule} from '@angular/forms';
-
 import {OrderModule} from 'ngx-order-pipe';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { InterpretationComponent } from './interpretation/interpretation.component';
@@ -16,6 +17,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import {GoogleChartsModule} from 'angular-google-charts';
 import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 declare var require : any;
 
@@ -43,9 +45,12 @@ const appRoutes : Routes = [
     HttpClientModule,
     BrowserModule,
     OrderModule,
+    MatSnackBarModule,
     AppRoutingModule,
     GoogleChartsModule,
     FormsModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)
   ],
   exports: [RouterModule],
