@@ -8,6 +8,7 @@ $rosee: #ffe3e3e0;
 $green: #8ab61e;
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 @keyframes shake {
   from {
@@ -56,6 +57,12 @@ $green: #8ab61e;
   background-color: white;
   color: $black;
   padding: 0 10px 0 0;
+  #title {
+    display: inline-block;
+    margin-left: 10px;
+    font-size: 50px;
+    font-family: "Anton", sans-serif;
+  }
 
   div {
     &.uppart {
