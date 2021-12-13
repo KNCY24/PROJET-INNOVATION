@@ -7,4 +7,4 @@ Le dossier "documents" contient le rapport du projet, le guide d'utilisation, la
 
 Le dossier "Code-arduino" contient le code de la carte de développement pour le fonctionnement du capteur.
 
-Les autres fichiers concernent l'application.
+Le code de l'application est situé dans la branche codeApp.
