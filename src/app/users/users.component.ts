@@ -211,6 +211,15 @@ export class UsersComponent implements OnInit {
             duration:3000,
             panelClass:["snackbar"]
           })
+          this.users = data;
+          this.popupA=false;
+          this.submit=false;
+          this.grade=""
+          this.name=""
+          this.fname=""
+          this.mail=""
+          this.statut="1"
+          this.born=""
         },
         error =>{
           alert('Erreur, réactualisez la page!')

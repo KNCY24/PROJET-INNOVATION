@@ -85,17 +85,16 @@ export class InterpretationComponent implements OnInit {
     }
     moyS=moyS/this.historique.interventions.length
     moyA=moyA/this.historique.interventions.length
-    if(listS.length<2 ||listA.length<2){
+    if(listS.length<2 ||listA.length<2 || (moyA==0 && moyS==0)){
       return "La quantité de données ne permet pas de faire une interprétation."
     }
     if(moyA>moyS && moyA-moyS>5){
-      return "En moyenne, le port de la barbe réduit l'étanchéité du masque de "+(moyA-moyS)+" %."
+      return "En moyenne, le port de la barbe réduit l'étanchéité du masque de "+Math.round((moyA-moyS)*100)/100+" %."
     }else if(moyA<moyS && moyS-moyA>5){
-      return "Le port de la barbe n'a pas d'impact sur l'étanchéité du masque. En revanche, on observe une meilleure étanchéité chez les individus portant la barbe, soit "+(moyS-moyA)+" % plus élevée en moyenne."
+      return "Le port de la barbe n'a pas d'impact sur l'étanchéité du masque. En revanche, on observe une meilleure étanchéité chez les individus portant la barbe, soit "+Math.round((moyS-moyA)*100)/100+" % plus élevée en moyenne."
     }else{
       return "En moyenne, l'étanchéité du masque n'est pas impactée par le port ou non de la barbe."
     }
-    return moyA+" "+moyS
   }
 
   nbIntervention(){
@@ -112,14 +111,26 @@ export class InterpretationComponent implements OnInit {
   listdata(barbe:Boolean){
     var data=[]
     for(let i of this.historique.interventions){
+      var temporaire=[]
       for(let p of i.porteurs){
         if(p.barbe==barbe){
-          data.push(p.gaz)
+          temporaire.push(p.gaz)
+          //data.push(p.gaz)
         }
+      }
+      if(temporaire.length>1){
+        var moy=0
+        for(let m of temporaire){
+          moy=+moy + +m
+        }
+        moy=moy/temporaire.length
+        data.push(moy)
+      }else{
+        data.push(temporaire[0])
       }
     }
     console.log(data)
-    return data
+    return data.reverse()
   }
 
 }

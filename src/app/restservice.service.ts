@@ -42,8 +42,4 @@ export class RestserviceService {
     return this.http.put<Historique>(this.server+"generic/addIntervention",intervention);
   }
 
-  updateIntervention(id:number):Observable<Historique> {
-    return this.http.put<Historique>(this.server+"generic/updateIntervention",id);
-  }
-
 }
