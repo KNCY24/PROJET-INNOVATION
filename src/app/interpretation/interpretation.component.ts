@@ -12,9 +12,6 @@ import * as Highcharts from 'highcharts';
 export class InterpretationComponent implements OnInit {
 
   historique:Historique=new Historique()
-  data= [
-    [1,45,25],[2,10,5],[3,15,1],[4,1,1],[5,15,2]
-  ]
   options:any;
   
   constructor(private service : RestserviceService) { 
@@ -23,7 +20,7 @@ export class InterpretationComponent implements OnInit {
         this.historique=data;
         this.options = {
           chart:{
-            type:'spline'
+            type:'scatter'
           },
           title:{
             text:''
@@ -42,7 +39,7 @@ export class InterpretationComponent implements OnInit {
           },
           yAxis:{
             title:{
-              text:"Exposition (%)"
+              text:"Exposition (ppm)"
             }
           },
           series:[{
@@ -89,11 +86,11 @@ export class InterpretationComponent implements OnInit {
       return "La quantité de données ne permet pas de faire une interprétation."
     }
     if(moyA>moyS && moyA-moyS>5){
-      return "En moyenne, le port de la barbe réduit l'étanchéité du masque de "+Math.round((moyA-moyS)*100)/100+" %."
+      return "En moyenne, l'exposition du porteur avec barbe est plus élevée que celle du porteur sans barbe."
     }else if(moyA<moyS && moyS-moyA>5){
-      return "Le port de la barbe n'a pas d'impact sur l'étanchéité du masque. En revanche, on observe une meilleure étanchéité chez les individus portant la barbe, soit "+Math.round((moyS-moyA)*100)/100+" % plus élevée en moyenne."
+      return "En moyenne, l'exposition du porteur sans barbe est plus élevée que celle du porteur avec barbe."
     }else{
-      return "En moyenne, l'étanchéité du masque n'est pas impactée par le port ou non de la barbe."
+      return "En moyenne, il n'y a pas de différence d'exposition entre le porteur avec barbe et le porteur sans barbe."
     }
   }
 
